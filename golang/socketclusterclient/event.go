@@ -1,4 +1,4 @@
-package socketcluster
+package socketclusterclient
 
 import (
 	"bytes"

@@ -1,4 +1,4 @@
-package socketcluster
+package socketclusterclient
 
 import (
 	"code.google.com/p/go.net/websocket"
