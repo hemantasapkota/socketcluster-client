@@ -1,1 +1,4 @@
 github "daltoniam/Starscream" "swift-1.2"
+github "hemantasapkota/GCDTimer"
+github "hemantasapkota/SwiftStore"
+

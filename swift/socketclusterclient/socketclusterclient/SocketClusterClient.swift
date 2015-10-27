@@ -8,9 +8,8 @@
 
 import Foundation
 import Starscream
-import JSONJoy
-import XCGLogger
 import GCDTimer
+import SwiftStore
 
 internal protocol SCEvent : JSONStringConvertible {
 }
@@ -134,7 +133,7 @@ class SocketClusterClient {
     private var events = [Int:Event]()
 
     /* Internal variables */
-    internal var log = XCGLogger.defaultInstance()
+    internal var log = Logger()
 
     /* Public variables */
     var socket: WebSocket!
@@ -175,10 +174,10 @@ class SocketClusterClient {
 
         socket.onConnect = {
             self.log.info("SC: Connected")
-
+            
             // Handshake event
             var id = self.newCid()
-            var event = Event(cid: id, rid:nil, event: "#handshake", data: [ "authToken" : OLDB.store[SocketClusterClient.SCAuthTokenStoreKey]! ])
+            var event = Event(cid: id, rid:nil, event: "#handshake", data: [ "authToken" : SCDB.store[SocketClusterClient.SCAuthTokenStoreKey]! ])
             self.emit(event)
             self.events[id] = event
         }
@@ -239,7 +238,7 @@ extension SocketClusterClient {
     private func processLogin(response: SCLoginResponse) {
         let timeToExpiry = response.timeToExpiry!
 
-        OLDB.store[SocketClusterClient.SCTimeToExpiryStoreKey] = "\(timeToExpiry)"
+        SCDB.store[SocketClusterClient.SCTimeToExpiryStoreKey] = "\(timeToExpiry)"
 
         self.setUpAuthRenewMechanism(timeToExpiry)
     }
@@ -253,7 +252,7 @@ extension SocketClusterClient {
     }
 
     private func processSetAuthToken(response: SCSetAuthTokenResponse) {
-        OLDB.store[SocketClusterClient.SCAuthTokenStoreKey] = response.token!
+        SCDB.store[SocketClusterClient.SCAuthTokenStoreKey] = response.token!
 
         if let triggerAuthSuccess = onAuthenticationSuccess {
             triggerAuthSuccess()
@@ -407,4 +406,39 @@ extension SocketClusterClient {
 
     func unsubscribeFromAllChannels() {
     }
+}
+
+extension SocketClusterClient {
+    
+    // Logger
+    class Logger {
+        func info(message: String) {
+            println(message)
+        }
+    }
+    
+    // DB
+    class SCDB : SwiftStore {
+        struct Static {
+            static var onceToken: dispatch_once_t = 0
+            static var instance: SCDB? = nil
+        }
+        
+        class var store:SCDB {
+            dispatch_once(&Static.onceToken) {
+                Static.instance = SCDB()
+            }
+            return Static.instance!
+        }
+        
+        init() {
+            super.init(storeName: "scdb")
+        }
+        
+        override func close() {
+            super.close()
+            Static.onceToken = 0
+        }
+    }
+    
 }

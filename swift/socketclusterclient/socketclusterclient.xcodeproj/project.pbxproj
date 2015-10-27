@@ -10,6 +10,10 @@
 		2E071B601BDEF3DB000FC378 /* socketclusterclient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E071B5F1BDEF3DB000FC378 /* socketclusterclient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E071B661BDEF3DB000FC378 /* socketclusterclient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071B5A1BDEF3DB000FC378 /* socketclusterclient.framework */; };
 		2E071B6D1BDEF3DB000FC378 /* socketclusterclientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071B6C1BDEF3DB000FC378 /* socketclusterclientTests.swift */; };
+		2E071B771BDEF408000FC378 /* SocketClusterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071B761BDEF408000FC378 /* SocketClusterClient.swift */; };
+		2E071B791BDEF4CA000FC378 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071B781BDEF4CA000FC378 /* Starscream.framework */; };
+		2E071B991BDEF972000FC378 /* GCDTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071B971BDEF972000FC378 /* GCDTimer.framework */; };
+		2E071B9A1BDEF972000FC378 /* SwiftStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071B981BDEF972000FC378 /* SwiftStore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		2E071B651BDEF3DB000FC378 /* socketclusterclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = socketclusterclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E071B6B1BDEF3DB000FC378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E071B6C1BDEF3DB000FC378 /* socketclusterclientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = socketclusterclientTests.swift; sourceTree = "<group>"; };
+		2E071B761BDEF408000FC378 /* SocketClusterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClusterClient.swift; sourceTree = "<group>"; };
+		2E071B781BDEF4CA000FC378 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		2E071B971BDEF972000FC378 /* GCDTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDTimer.framework; path = Carthage/Build/iOS/GCDTimer.framework; sourceTree = "<group>"; };
+		2E071B981BDEF972000FC378 /* SwiftStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftStore.framework; path = Carthage/Build/iOS/SwiftStore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E071B991BDEF972000FC378 /* GCDTimer.framework in Frameworks */,
+				2E071B9A1BDEF972000FC378 /* SwiftStore.framework in Frameworks */,
+				2E071B791BDEF4CA000FC378 /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +64,9 @@
 		2E071B501BDEF3DB000FC378 = {
 			isa = PBXGroup;
 			children = (
+				2E071B971BDEF972000FC378 /* GCDTimer.framework */,
+				2E071B981BDEF972000FC378 /* SwiftStore.framework */,
+				2E071B781BDEF4CA000FC378 /* Starscream.framework */,
 				2E071B5C1BDEF3DB000FC378 /* socketclusterclient */,
 				2E071B691BDEF3DB000FC378 /* socketclusterclientTests */,
 				2E071B5B1BDEF3DB000FC378 /* Products */,
@@ -71,6 +85,7 @@
 		2E071B5C1BDEF3DB000FC378 /* socketclusterclient */ = {
 			isa = PBXGroup;
 			children = (
+				2E071B761BDEF408000FC378 /* SocketClusterClient.swift */,
 				2E071B5F1BDEF3DB000FC378 /* socketclusterclient.h */,
 				2E071B5D1BDEF3DB000FC378 /* Supporting Files */,
 			);
@@ -124,6 +139,7 @@
 				2E071B561BDEF3DB000FC378 /* Frameworks */,
 				2E071B571BDEF3DB000FC378 /* Headers */,
 				2E071B581BDEF3DB000FC378 /* Resources */,
+				2E071B7A1BDEF4DC000FC378 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -204,11 +220,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2E071B7A1BDEF4DC000FC378 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/GCDTimer.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftStore.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2E071B551BDEF3DB000FC378 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E071B771BDEF408000FC378 /* SocketClusterClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,25 +359,36 @@
 		2E071B711BDEF3DB000FC378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = socketclusterclient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		2E071B721BDEF3DB000FC378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = socketclusterclient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
