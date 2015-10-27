@@ -11,6 +11,9 @@
 		2E071B661BDEF3DB000FC378 /* socketclusterclient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071B5A1BDEF3DB000FC378 /* socketclusterclient.framework */; };
 		2E071B6D1BDEF3DB000FC378 /* socketclusterclientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071B6C1BDEF3DB000FC378 /* socketclusterclientTests.swift */; };
 		2E071B771BDEF408000FC378 /* SocketClusterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071B761BDEF408000FC378 /* SocketClusterClient.swift */; };
+		2E071E101BDF70E2000FC378 /* GCDTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071E0D1BDF70E2000FC378 /* GCDTimer.framework */; };
+		2E071E111BDF70E2000FC378 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071E0E1BDF70E2000FC378 /* Starscream.framework */; };
+		2E071E121BDF70E2000FC378 /* SwiftStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071E0F1BDF70E2000FC378 /* SwiftStore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +34,9 @@
 		2E071B6B1BDEF3DB000FC378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E071B6C1BDEF3DB000FC378 /* socketclusterclientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = socketclusterclientTests.swift; sourceTree = "<group>"; };
 		2E071B761BDEF408000FC378 /* SocketClusterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClusterClient.swift; sourceTree = "<group>"; };
+		2E071E0D1BDF70E2000FC378 /* GCDTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDTimer.framework; path = Carthage/Build/iOS/GCDTimer.framework; sourceTree = "<group>"; };
+		2E071E0E1BDF70E2000FC378 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		2E071E0F1BDF70E2000FC378 /* SwiftStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftStore.framework; path = Carthage/Build/iOS/SwiftStore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E071E101BDF70E2000FC378 /* GCDTimer.framework in Frameworks */,
+				2E071E111BDF70E2000FC378 /* Starscream.framework in Frameworks */,
+				2E071E121BDF70E2000FC378 /* SwiftStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +64,9 @@
 		2E071B501BDEF3DB000FC378 = {
 			isa = PBXGroup;
 			children = (
+				2E071E0D1BDF70E2000FC378 /* GCDTimer.framework */,
+				2E071E0E1BDF70E2000FC378 /* Starscream.framework */,
+				2E071E0F1BDF70E2000FC378 /* SwiftStore.framework */,
 				2E071B5C1BDEF3DB000FC378 /* socketclusterclient */,
 				2E071B691BDEF3DB000FC378 /* socketclusterclientTests */,
 				2E071B5B1BDEF3DB000FC378 /* Products */,
