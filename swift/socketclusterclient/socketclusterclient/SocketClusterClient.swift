@@ -11,9 +11,6 @@ import Starscream
 import GCDTimer
 import SwiftStore
 
-internal protocol SCEvent : JSONStringConvertible {
-}
-
 internal protocol JSONDictConvertible {
     func toDict() -> Dictionary<String, AnyObject>?
 }
@@ -128,8 +125,6 @@ class SocketClusterClient {
     /* Private variables */
     private var cid = 1
 
-    private var serverAuthToken: String?
-    
     private var events = [Int:Event]()
 
     /* Internal variables */
@@ -163,9 +158,14 @@ class SocketClusterClient {
 
     /* End Handlers */
 
-    init(profileName: String, host: String) {
-        //TODO: Change the scheme to WSS for production
-        socket = WebSocket(url: NSURL(scheme: "wss", host: "\(host)/socketcluster/", path: "/")!)
+    init(profileName: String, host: String, secure: Bool) {
+        
+        var scheme = "ws"
+        if secure {
+            scheme = "wss"
+        }
+        
+        socket = WebSocket(url: NSURL(scheme: scheme, host: "\(host)/socketcluster/", path: "/")!)
 
         self.profileName = profileName
 
