@@ -1,4 +1,4 @@
 github "hemantasapkota/GCDTimer" "0.7"
 github "daltoniam/Starscream" "6cc4707a8071a52c51560155e451931a352e43bc"
 github "hemantasapkota/SwiftStore" "2.0.0"
-github "hemantasapkota/socketcluster-client" "v0.4-ios"
+github "hemantasapkota/socketcluster-client" "v0.5-ios"
