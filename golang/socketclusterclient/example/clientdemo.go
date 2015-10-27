@@ -8,7 +8,7 @@ import (
 func main() {
 
 	authDetails := socketcluster.AuthDetails{
-		Host:        "http://localhost:8000",
+		Host:        "localhost:8000",
 		ProfileName: "",
 		AuthToken:   "",
 		UserAgent:   "",
