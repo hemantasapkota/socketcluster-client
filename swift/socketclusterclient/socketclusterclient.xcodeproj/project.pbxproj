@@ -11,9 +11,6 @@
 		2E071B661BDEF3DB000FC378 /* socketclusterclient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071B5A1BDEF3DB000FC378 /* socketclusterclient.framework */; };
 		2E071B6D1BDEF3DB000FC378 /* socketclusterclientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071B6C1BDEF3DB000FC378 /* socketclusterclientTests.swift */; };
 		2E071B771BDEF408000FC378 /* SocketClusterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071B761BDEF408000FC378 /* SocketClusterClient.swift */; };
-		2E071DF71BDF37D9000FC378 /* GCDTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071DC31BDF370F000FC378 /* GCDTimer.framework */; };
-		2E071DF81BDF37D9000FC378 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071DD61BDF370F000FC378 /* Starscream.framework */; };
-		2E071DF91BDF37D9000FC378 /* SwiftStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071DE51BDF370F000FC378 /* SwiftStore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,97 +20,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2E071B591BDEF3DB000FC378;
 			remoteInfo = socketclusterclient;
-		};
-		2E071DC21BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071CF51BDF370F000FC378 /* GCDTimer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2EE9CCAF1B200F7A00D1FDF6;
-			remoteInfo = GCDTimer;
-		};
-		2E071DC41BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071CF51BDF370F000FC378 /* GCDTimer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2EE9CCBA1B200F7A00D1FDF6;
-			remoteInfo = GCDTimerTests;
-		};
-		2E071DD51BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6B3E79E619D48B7F006071F7;
-			remoteInfo = Starscream;
-		};
-		2E071DD71BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6B3E79F119D48B7F006071F7;
-			remoteInfo = StarscreamTests;
-		};
-		2E071DD91BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D9C3E35F19E48FF1009FC285;
-			remoteInfo = StarscreamOSX;
-		};
-		2E071DDB1BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D9C3E36919E48FF1009FC285;
-			remoteInfo = StarscreamOSXTests;
-		};
-		2E071DDD1BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 091277971BD673A70003036D;
-			remoteInfo = StarscreamTv;
-		};
-		2E071DDF1BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 091277A01BD673A70003036D;
-			remoteInfo = StarscreamTvTests;
-		};
-		2E071DE41BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D601BDF370F000FC378 /* SwiftStore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2EAADF261AF6F94600783BAD;
-			remoteInfo = SwiftStore;
-		};
-		2E071DE61BDF370F000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D601BDF370F000FC378 /* SwiftStore.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2EAADF311AF6F94600783BAD;
-			remoteInfo = SwiftStoreTests;
-		};
-		2E071DFA1BDF3804000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071CF51BDF370F000FC378 /* GCDTimer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2EE9CCAE1B200F7A00D1FDF6;
-			remoteInfo = GCDTimer;
-		};
-		2E071DFC1BDF3804000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6B3E79E519D48B7F006071F7;
-			remoteInfo = Starscream;
-		};
-		2E071DFE1BDF3804000FC378 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E071D601BDF370F000FC378 /* SwiftStore.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2EAADF251AF6F94600783BAD;
-			remoteInfo = SwiftStore;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -125,9 +31,6 @@
 		2E071B6B1BDEF3DB000FC378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E071B6C1BDEF3DB000FC378 /* socketclusterclientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = socketclusterclientTests.swift; sourceTree = "<group>"; };
 		2E071B761BDEF408000FC378 /* SocketClusterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClusterClient.swift; sourceTree = "<group>"; };
-		2E071CF51BDF370F000FC378 /* GCDTimer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = GCDTimer.xcodeproj; sourceTree = "<group>"; };
-		2E071D281BDF370F000FC378 /* Starscream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Starscream.xcodeproj; sourceTree = "<group>"; };
-		2E071D601BDF370F000FC378 /* SwiftStore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftStore.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,9 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E071DF71BDF37D9000FC378 /* GCDTimer.framework in Frameworks */,
-				2E071DF81BDF37D9000FC378 /* Starscream.framework in Frameworks */,
-				2E071DF91BDF37D9000FC378 /* SwiftStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				2E071B5C1BDEF3DB000FC378 /* socketclusterclient */,
-				2E071BC91BDF34BF000FC378 /* vendor */,
 				2E071B691BDEF3DB000FC378 /* socketclusterclientTests */,
 				2E071B5B1BDEF3DB000FC378 /* Products */,
 			);
@@ -206,71 +105,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2E071BC91BDF34BF000FC378 /* vendor */ = {
-			isa = PBXGroup;
-			children = (
-				2E071CDC1BDF370F000FC378 /* GCDTimer */,
-				2E071CFD1BDF370F000FC378 /* Starscream */,
-				2E071D2F1BDF370F000FC378 /* SwiftStore */,
-			);
-			path = vendor;
-			sourceTree = "<group>";
-		};
-		2E071CDC1BDF370F000FC378 /* GCDTimer */ = {
-			isa = PBXGroup;
-			children = (
-				2E071CF51BDF370F000FC378 /* GCDTimer.xcodeproj */,
-			);
-			path = GCDTimer;
-			sourceTree = "<group>";
-		};
-		2E071CF61BDF370F000FC378 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E071DC31BDF370F000FC378 /* GCDTimer.framework */,
-				2E071DC51BDF370F000FC378 /* GCDTimerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2E071CFD1BDF370F000FC378 /* Starscream */ = {
-			isa = PBXGroup;
-			children = (
-				2E071D281BDF370F000FC378 /* Starscream.xcodeproj */,
-			);
-			path = Starscream;
-			sourceTree = "<group>";
-		};
-		2E071D291BDF370F000FC378 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E071DD61BDF370F000FC378 /* Starscream.framework */,
-				2E071DD81BDF370F000FC378 /* StarscreamTests.xctest */,
-				2E071DDA1BDF370F000FC378 /* Starscream.framework */,
-				2E071DDC1BDF370F000FC378 /* StarscreamOSXTests.xctest */,
-				2E071DDE1BDF370F000FC378 /* StarscreamTv.framework */,
-				2E071DE01BDF370F000FC378 /* StarscreamTvTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2E071D2F1BDF370F000FC378 /* SwiftStore */ = {
-			isa = PBXGroup;
-			children = (
-				2E071D601BDF370F000FC378 /* SwiftStore.xcodeproj */,
-			);
-			path = SwiftStore;
-			sourceTree = "<group>";
-		};
-		2E071D611BDF370F000FC378 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E071DE51BDF370F000FC378 /* SwiftStore.framework */,
-				2E071DE71BDF370F000FC378 /* SwiftStoreTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -297,9 +131,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2E071DFB1BDF3804000FC378 /* PBXTargetDependency */,
-				2E071DFD1BDF3804000FC378 /* PBXTargetDependency */,
-				2E071DFF1BDF3804000FC378 /* PBXTargetDependency */,
 			);
 			name = socketclusterclient;
 			productName = socketclusterclient;
@@ -352,20 +183,6 @@
 			mainGroup = 2E071B501BDEF3DB000FC378;
 			productRefGroup = 2E071B5B1BDEF3DB000FC378 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 2E071CF61BDF370F000FC378 /* Products */;
-					ProjectRef = 2E071CF51BDF370F000FC378 /* GCDTimer.xcodeproj */;
-				},
-				{
-					ProductGroup = 2E071D291BDF370F000FC378 /* Products */;
-					ProjectRef = 2E071D281BDF370F000FC378 /* Starscream.xcodeproj */;
-				},
-				{
-					ProductGroup = 2E071D611BDF370F000FC378 /* Products */;
-					ProjectRef = 2E071D601BDF370F000FC378 /* SwiftStore.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				2E071B591BDEF3DB000FC378 /* socketclusterclient */,
@@ -373,79 +190,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		2E071DC31BDF370F000FC378 /* GCDTimer.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GCDTimer.framework;
-			remoteRef = 2E071DC21BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DC51BDF370F000FC378 /* GCDTimerTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GCDTimerTests.xctest;
-			remoteRef = 2E071DC41BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DD61BDF370F000FC378 /* Starscream.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Starscream.framework;
-			remoteRef = 2E071DD51BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DD81BDF370F000FC378 /* StarscreamTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = StarscreamTests.xctest;
-			remoteRef = 2E071DD71BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DDA1BDF370F000FC378 /* Starscream.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Starscream.framework;
-			remoteRef = 2E071DD91BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DDC1BDF370F000FC378 /* StarscreamOSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = StarscreamOSXTests.xctest;
-			remoteRef = 2E071DDB1BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DDE1BDF370F000FC378 /* StarscreamTv.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = StarscreamTv.framework;
-			remoteRef = 2E071DDD1BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DE01BDF370F000FC378 /* StarscreamTvTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = StarscreamTvTests.xctest;
-			remoteRef = 2E071DDF1BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DE51BDF370F000FC378 /* SwiftStore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftStore.framework;
-			remoteRef = 2E071DE41BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E071DE71BDF370F000FC378 /* SwiftStoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SwiftStoreTests.xctest;
-			remoteRef = 2E071DE61BDF370F000FC378 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2E071B581BDEF3DB000FC378 /* Resources */ = {
@@ -488,21 +232,6 @@
 			isa = PBXTargetDependency;
 			target = 2E071B591BDEF3DB000FC378 /* socketclusterclient */;
 			targetProxy = 2E071B671BDEF3DB000FC378 /* PBXContainerItemProxy */;
-		};
-		2E071DFB1BDF3804000FC378 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GCDTimer;
-			targetProxy = 2E071DFA1BDF3804000FC378 /* PBXContainerItemProxy */;
-		};
-		2E071DFD1BDF3804000FC378 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Starscream;
-			targetProxy = 2E071DFC1BDF3804000FC378 /* PBXContainerItemProxy */;
-		};
-		2E071DFF1BDF3804000FC378 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftStore;
-			targetProxy = 2E071DFE1BDF3804000FC378 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

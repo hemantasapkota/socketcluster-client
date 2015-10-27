@@ -13,6 +13,9 @@
 		2E071BB11BDF24E0000FC378 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E071BB01BDF24E0000FC378 /* Images.xcassets */; };
 		2E071BB41BDF24E0000FC378 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E071BB21BDF24E0000FC378 /* LaunchScreen.xib */; };
 		2E071BC01BDF24E0000FC378 /* exampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E071BBF1BDF24E0000FC378 /* exampleTests.swift */; };
+		2E071E0A1BDF4084000FC378 /* GCDTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071E071BDF4084000FC378 /* GCDTimer.framework */; };
+		2E071E0B1BDF4084000FC378 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071E081BDF4084000FC378 /* Starscream.framework */; };
+		2E071E0C1BDF4084000FC378 /* SwiftStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E071E091BDF4084000FC378 /* SwiftStore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		2E071BB91BDF24E0000FC378 /* exampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = exampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E071BBE1BDF24E0000FC378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E071BBF1BDF24E0000FC378 /* exampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exampleTests.swift; sourceTree = "<group>"; };
+		2E071E071BDF4084000FC378 /* GCDTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDTimer.framework; path = Carthage/Build/iOS/GCDTimer.framework; sourceTree = "<group>"; };
+		2E071E081BDF4084000FC378 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		2E071E091BDF4084000FC378 /* SwiftStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftStore.framework; path = Carthage/Build/iOS/SwiftStore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E071E0A1BDF4084000FC378 /* GCDTimer.framework in Frameworks */,
+				2E071E0B1BDF4084000FC378 /* Starscream.framework in Frameworks */,
+				2E071E0C1BDF4084000FC378 /* SwiftStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +68,9 @@
 		2E071B9B1BDF24E0000FC378 = {
 			isa = PBXGroup;
 			children = (
+				2E071E071BDF4084000FC378 /* GCDTimer.framework */,
+				2E071E081BDF4084000FC378 /* Starscream.framework */,
+				2E071E091BDF4084000FC378 /* SwiftStore.framework */,
 				2E071BA61BDF24E0000FC378 /* example */,
 				2E071BBC1BDF24E0000FC378 /* exampleTests */,
 				2E071BA51BDF24E0000FC378 /* Products */,
@@ -342,6 +354,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,6 +368,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
