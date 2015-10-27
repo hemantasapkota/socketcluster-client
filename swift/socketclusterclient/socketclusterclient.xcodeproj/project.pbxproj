@@ -68,6 +68,7 @@
 				2E071B981BDEF972000FC378 /* SwiftStore.framework */,
 				2E071B781BDEF4CA000FC378 /* Starscream.framework */,
 				2E071B5C1BDEF3DB000FC378 /* socketclusterclient */,
+				2E071BC91BDF34BF000FC378 /* vendor */,
 				2E071B691BDEF3DB000FC378 /* socketclusterclientTests */,
 				2E071B5B1BDEF3DB000FC378 /* Products */,
 			);
@@ -115,6 +116,13 @@
 				2E071B6B1BDEF3DB000FC378 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2E071BC91BDF34BF000FC378 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
