@@ -34,7 +34,7 @@ internal struct StringData : JSONDictConvertible {
     }
 }
 
-internal struct Event : JSONDataConvertible, JSONStringConvertible {
+public struct Event : JSONDataConvertible, JSONStringConvertible {
     var cid:    Int?
     var rid:    Int?
     var event:  String?
@@ -111,7 +111,7 @@ internal struct SCSetAuthTokenResponse {
     }
 }
 
-class SocketClusterClient {
+public class SocketClusterClient {
 
     /* Constants */
     private static let PONG = "2"
@@ -148,17 +148,17 @@ class SocketClusterClient {
 
     /* Handlers */
 
-    var onAuthenticationSuccess: (() -> Void)?
+    public var onAuthenticationSuccess: (() -> Void)?
 
-    var onAuthenticationFailure: ((erorr:String?) -> Void)?
+    public var onAuthenticationFailure: ((erorr:String?) -> Void)?
 
-    var onEventResponse: ((event:Event)->Void)?
+    public var onEventResponse: ((event:Event)->Void)?
 
-    var onRenewToken: (() -> Void)?
+    public var onRenewToken: (() -> Void)?
 
     /* End Handlers */
 
-    init(profileName: String, host: String, secure: Bool) {
+    public init(profileName: String, host: String, secure: Bool) {
         
         var scheme = "ws"
         if secure {
@@ -299,7 +299,7 @@ extension SocketClusterClient {
 // Plumbing stuff
 extension SocketClusterClient {
 
-    internal func JSONStringify(data: AnyObject) -> NSString? {
+    public func JSONStringify(data: AnyObject) -> NSString? {
         var data = NSJSONSerialization.dataWithJSONObject(data, options: nil, error: nil)
         
         // See http://stackoverflow.com/questions/19651009/how-to-prevent-nsjsonserialization-from-adding-extra-escapes-in-url
@@ -310,7 +310,7 @@ extension SocketClusterClient {
     }
 
 
-    internal func newCid() -> Int {
+    public func newCid() -> Int {
         dispatch_sync(SocketClusterClient.dispatchQueue, { () -> Void in
             self.cid = self.cid + 1
         })
@@ -321,7 +321,7 @@ extension SocketClusterClient {
 // Events and responses
 extension SocketClusterClient {
 
-    internal func emit(event: Event) {
+    public func emit(event: Event) {
         // Emit events in a serial order
         dispatch_sync(SocketClusterClient.dispatchQueue, { () -> Void in
             if let jsonData = event.toJSONData() {
@@ -381,21 +381,21 @@ extension SocketClusterClient {
 //Public interface
 extension SocketClusterClient {
 
-    func connect() {
+    public func connect() {
         log.info("SC: connecting...")
         dispatch_async(SocketClusterClient.dispatchQueue, { () -> Void in
             self.socket.connect()
         })
     }
 
-    func disconnect() {
+    public func disconnect() {
         log.info("SC: Disconnecting...")
         dispatch_async(SocketClusterClient.dispatchQueue, { () -> Void in
             self.socket.disconnect()
         })
     }
 
-    func subscribe(channels: [String], completion:(eventId:Int) -> ()) {
+    public func subscribe(channels: [String], completion:(eventId:Int) -> ()) {
         dispatch_async(SocketClusterClient.dispatchQueue, { () -> Void in
             var id = self.newCid()
             let event = Event(cid: id, rid: nil, event: "#subscribe", data: self.JSONStringify(channels)!)
@@ -404,21 +404,21 @@ extension SocketClusterClient {
         })
     }
 
-    func unsubscribeFromAllChannels() {
+    public func unsubscribeFromAllChannels() {
     }
 }
 
 extension SocketClusterClient {
     
     // Logger
-    class Logger {
+    public class Logger {
         func info(message: String) {
             println(message)
         }
     }
     
     // DB
-    class SCDB : SwiftStore {
+    public class SCDB : SwiftStore {
         struct Static {
             static var onceToken: dispatch_once_t = 0
             static var instance: SCDB? = nil
@@ -431,11 +431,11 @@ extension SocketClusterClient {
             return Static.instance!
         }
         
-        init() {
+        public init() {
             super.init(storeName: "scdb")
         }
         
-        override func close() {
+        override public func close() {
             super.close()
             Static.onceToken = 0
         }
