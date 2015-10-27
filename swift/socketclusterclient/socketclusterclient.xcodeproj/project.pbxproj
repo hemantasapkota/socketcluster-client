@@ -139,6 +139,7 @@
 				2E071B561BDEF3DB000FC378 /* Frameworks */,
 				2E071B571BDEF3DB000FC378 /* Headers */,
 				2E071B581BDEF3DB000FC378 /* Resources */,
+				2E071E131BDF7600000FC378 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -219,6 +220,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E071E131BDF7600000FC378 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/GCDTimer.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftStore.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E071B551BDEF3DB000FC378 /* Sources */ = {
