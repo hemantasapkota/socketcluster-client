@@ -240,7 +240,7 @@ func (c *Client) recieve() (*Event, error) {
 	var message string
 	websocket.Message.Receive(c.ws, &message)
 
-	if message == "1" {
+	if message == "1" || message == "#1" {
 		Info.Println("PING")
 		c.pong()
 		return makeEmptyEvent(), nil
