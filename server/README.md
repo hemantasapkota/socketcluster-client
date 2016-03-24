@@ -9,39 +9,40 @@ Complete documentation available at: http://socketcluster.io/
 
 ## Change log
 
-**18 July 2015** (v2.3.0)
+**16 January 2016** (v4.2.0)
 
-Renamed all occurrences of 'store' to 'broker' throughout SC (the default file store.js file was also renamed to broker.js).
-Since the primary purpose of a 'store' is actually to share messages and data between workers, the word 'broker' seems more appropriate.
-You can still save in-memory data inside 'brokers' as before (their functionality hasn't changed - Just the name).
+- The schedulingPolicy option (http://socketcluster.io/#!/docs/api-socketcluster) is now 'rr' by default (except on Windows) - After doing some stress testing on large 8-core Linux EC2 instances, the 'rr' policy turned out to be much better at distributing load across multiple CPU cores. The downside of the 'rr' policy is that all new connection fds pass through
+a central master process but that process turned out to be extremely efficient. It's not a perfect solution but it's much better than letting the Linux OS handle it.
 
-**9 July 2015** (v2.2.38)
+**05 January 2016** (v4.0.0)
 
-The ```store.options``` object from the storeController (store.js) now represents the global options object
-(containing all settings passed to the master SocketCluster constructor) instead of just the content of storeOptions.
-To pass custom options to the store object, you can just add the directly to the master SocketCluster() constructor's options object. E.g:
+- Middleware functions used to have different arguments (depending on the middleware type); now they are all in the format ```function (req, next) {...}```.
+The ```req``` object will have different properties depending on the middleware type. See addMiddleware() method here: http://socketcluster.io/#!/docs/api-scserver
+- When invoking ```socket.emit``` or ```socket.publish``` - When a callback was provided, it would emit an 'error' event on the socket if the operation failed.
+This is no longer the case - The callback will still receive the error as the first argument like it used to (assuming that there was an error), but it
+just won't be emitted as an 'error' event on the socket - It is considered an application error (not an SC error).
+- The 'notice' event was replaced with a 'warning' event - This is more consistent with the convention used in most other frameworks.
+- You can now pass custom error objects to the ```next(err)``` callback inside middleware functions; this is now recommended instead of plain strings.
+The ```err``` object you provide can inherit from the ```Error``` object (but this isn't necessary). It is recommended that whatever object you provide has
+a ```name``` and a ```message``` property; you can also add custom properties to your error object and the client will receive those as rehydrated ```Error``` objects. Note that this is a non-breaking change - You can still pass a string as ```err``` and it won't break anything.
+- On the server-side, the ```socket.removeAuthToken()``` method was replaced by ```socket.deauthenticate()```.
 
-```js
-var socketCluster = new SocketCluster({
-  workers: 1,
-  stores: 1,
-  // ...
-  myCustomBrokerOption: 'bla',
-  anotherCustomBrokerOption: 'foo',
-  // ...
-});
-```
+This release introduces many other non-breaking changes.
 
-This change was also implemented in **sc-redis** although we now use a storeOptions property to hold all store-related properties.
-So now, inside the storeController, we access the custom storeOptions property from ```store.options.storeOptions``` - This is for backwards compatibility.
-If you ```npm update socketcluster``` just make sure that you also ```npm update sc-redis``` - You shouldn't need to change any of your code.
+- See RFC: https://github.com/SocketCluster/socketcluster/issues/137
+- The docs have been updated on the website. See http://socketcluster.io/
 
+**22 November 2015** (v3.0.0)
+
+- The defaultAuthTokenExpiryInMinutes and defaultAuthTokenExpiry config options have been removed - Use authDefaultExpiry instead (value is in seconds).
+- Ping and pong are now represented as raw messages '#1' and '#2' instead of '1' and '2' - This is to avoid potential conflicts with user logic when
+using the raw ```socket.send(...)``` method.
 
 ## Introduction
 
-SocketCluster is a fast, highly scalable HTTP + realtime server engine which lets you build multi-process 
+SocketCluster is a fast, highly scalable HTTP + realtime server engine which lets you build multi-process
 realtime servers that make use of all CPU cores on a machine/instance.
-It removes the limitations of having to run your Node.js server as a single thread and makes your backend 
+It removes the limitations of having to run your Node.js server as a single thread and makes your backend
 resilient by automatically recovering from worker crashes and aggregating errors into a central log.
 
 Follow the project on Twitter: https://twitter.com/SocketCluster
@@ -75,7 +76,7 @@ Setup the socketcluster command:
 npm install -g socketcluster
 ```
 
-OR 
+OR
 
 ```bash
 sudo npm install -g socketcluster
@@ -107,7 +108,7 @@ You will also need to install the client separately which you can get using the 
 npm install socketcluster-client
 ```
 
-The socketcluster-client script is called socketcluster.js (located in the main socketcluster-client directory) 
+The socketcluster-client script is called socketcluster.js (located in the main socketcluster-client directory)
 - You should include it in your HTML page using a &lt;script&gt; tag in order to interact with SocketCluster.
 For more details on how to use socketcluster-client, go to https://github.com/SocketCluster/socketcluster-client
 
@@ -115,7 +116,7 @@ It is recommended that you use Node.js version >=0.10.22 due to memory leaks pre
 
 ### Using over HTTPS
 
-In order to run SocketCluster over HTTPS, all you need to do is set the protocol to 'https' and 
+In order to run SocketCluster over HTTPS, all you need to do is set the protocol to 'https' and
 provide your private key and certificate as a start option when you instantiate SocketCluster - Example:
 
 ```js
@@ -151,7 +152,7 @@ To contribute; clone this repo, then cd inside it and then run npm install to in
 
 (The MIT License)
 
-Copyright (c) 2013-2015 SocketCluster.io
+Copyright (c) 2013-2016 SocketCluster.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

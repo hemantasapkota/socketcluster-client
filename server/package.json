@@ -1,7 +1,7 @@
 {
   "name": "socketcluster",
   "description": "SocketCluster - A Highly parallelized WebSocket server cluster to make the most of multi-core machines/instances.",
-  "version": "2.3.21",
+  "version": "4.3.3",
   "homepage": "http://socketcluster.io",
   "contributors": [
     {
@@ -14,17 +14,20 @@
     "url": "git://github.com/SocketCluster/socketcluster.git"
   },
   "dependencies": {
-    "async": "0.7.0",
+    "async": "1.5.0",
     "base64id": "0.1.0",
-    "iocluster": "2.5.x",
-    "jsonwebtoken": "5.0.0",
+    "sc-broker-cluster": "2.0.x",
+    "jsonwebtoken": "5.4.1",
     "minimist": "1.1.0",
     "node-uuid": "1.4.3",
+    "sc-auth": "3.0.x",
     "sc-emitter": "1.0.x",
+    "sc-errors": "1.0.x",
     "sc-formatter": "1.0.x",
+    "socketcluster-server": "4.1.x",
     "uid-number": "0.0.5",
     "wrench": "1.5.8",
-    "ws": "0.8.0"
+    "ws": "1.0.1"
   },
   "bin": {
     "socketcluster": "bin/cli.js"
