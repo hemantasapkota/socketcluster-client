@@ -1,4 +1,4 @@
-package native
+package sc_client
 
 import (
 	socketcluster "socketcluster-client/client"
