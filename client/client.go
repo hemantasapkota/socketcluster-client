@@ -10,11 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/boltdb/bolt"
-)
-
-const (
-	bucketSubscriptions = "subscriptions"
+	ldb "github.com/hemantasapkota/goma/gomadb/leveldb"
 )
 
 type AuthDetails struct {
@@ -29,7 +25,7 @@ type Client struct {
 	ws    *websocket.Conn
 	id    int
 	mutex *sync.Mutex
-	db    *bolt.DB
+	db    *ldb.GomaDB
 
 	QuitChan chan bool
 
@@ -44,12 +40,6 @@ var Info *log.Logger
 // Create a New SocketCluster Client
 func NewClient(auth AuthDetails, dbpath string) (*Client, error) {
 	Info = log.New(os.Stdout, "SOCKETCLUSTER: ", log.Ltime|log.Lshortfile)
-
-	// Set up DB
-	db, err := setupDB(dbpath)
-	if err != nil {
-		Info.Println("Couldn't set up DB. Events cannot be saved.")
-	}
 
 	origin := "http://localhost"
 	prefix := "ws"
@@ -73,9 +63,10 @@ func NewClient(auth AuthDetails, dbpath string) (*Client, error) {
 		ws:       ws,
 		id:       0,
 		mutex:    &sync.Mutex{},
-		db:       db,
 		QuitChan: make(chan bool),
 	}
+
+	c.setupDB(dbpath)
 
 	// Connection succeded. Send a handshake event.
 	c.emit(c.NewEvent("#handshake", makeHandshakeData()))
@@ -202,21 +193,15 @@ func (c *Client) pong() {
 
 func (c *Client) Close() {
 	Info.Println("Closing connection")
-	// For now send quit chan
-	// c.QuitChan <- true
+	c.QuitChan <- true
 	c.ws.Close()
+	ldb.CloseDB()
 }
 
 func (c *Client) Pause() {
-	c.db.Close()
 }
 
-func (c *Client) Resume(dbpath string) {
-	db, err := setupDB(dbpath)
-	if err != nil {
-		Info.Println("Resume error: ", err)
-	}
-	c.db = db
+func (c *Client) Resume() {
 }
 
 // Reciever channels
@@ -267,45 +252,19 @@ func (c *Client) newId() int {
 	return c.id
 }
 
-func setupDB(dbpath string) (*bolt.DB, error) {
-	db, err := bolt.Open(fmt.Sprintf("%s/sc.db", dbpath), 0600, nil)
+func (c *Client) setupDB(dbpath string) error {
+	var err error
+	c.db, err = ldb.InitDB(dbpath)
 	if err != nil {
-		Info.Println("Could not setup db for socketcluster")
-		return nil, err
+		return err
 	}
-
-	// Create General Bucket
-	err = db.Update(func(tx *bolt.Tx) error {
-		_, err := tx.CreateBucketIfNotExists([]byte(bucketSubscriptions))
-		if err != nil {
-			return fmt.Errorf("create bucket: %s", err)
-		}
-		return nil
-	})
-
-	return db, nil
+	return nil
 }
 
 func (c *Client) AddEvent(id string, channelName string) error {
-	err := c.db.Update(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte(bucketSubscriptions))
-		return b.Put([]byte(id), []byte(channelName))
-	})
-	return err
+	return c.db.Put(id, channelName)
 }
 
-func (c *Client) GetEvent(id string) (*string, error) {
-	var value []byte
-	err := c.db.View(func(tx *bolt.Tx) error {
-		b := tx.Bucket([]byte(bucketSubscriptions))
-		value = b.Get([]byte(id))
-		return nil
-	})
-
-	if err != nil {
-		return nil, err
-	}
-
-	val := string(value)
-	return &val, nil
+func (c *Client) GetEvent(id string) (string, error) {
+	return c.db.Get(id)
 }
