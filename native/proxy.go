@@ -27,6 +27,9 @@ func NewSocketClusterClient(host string, profileName string, authToken string, u
 	sc.OnAuthSuccess = func() {
 	}
 
+	sc.OnAuthFailure = func(err string) {
+	}
+
 	sc.OnData = func(event *socketcluster.Event) {
 		data, err := json.Marshal(event)
 		if err != nil {
