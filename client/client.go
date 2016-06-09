@@ -27,7 +27,7 @@ type Client struct {
 	mutex *sync.Mutex
 	db    *ldb.GomaDB
 
-	QuitChan chan bool
+	QuitChan chan int
 
 	OnAuthSuccess func()
 	OnData        func(event *Event)
@@ -63,7 +63,7 @@ func NewClient(auth AuthDetails, dbpath string) (*Client, error) {
 		ws:       ws,
 		id:       0,
 		mutex:    &sync.Mutex{},
-		QuitChan: make(chan bool),
+		QuitChan: make(chan int),
 	}
 
 	c.setupDB(dbpath)
@@ -193,7 +193,7 @@ func (c *Client) pong() {
 
 func (c *Client) Close() {
 	Info.Println("Closing connection")
-	c.QuitChan <- true
+	close(c.QuitChan)
 	c.ws.Close()
 	ldb.CloseDB()
 }
