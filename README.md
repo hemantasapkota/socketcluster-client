@@ -1,5 +1,5 @@
-### SocketCluster Client ( IOS, Android & Golang ) ###
-Socket Cluster Client for IOS, Android & Golang
+### SocketCluster Client ( Golang, IOS, & Android) ###
+Socket Cluster Client for Golang, IOS & Android.
 
 ### Dependencies ###
 
