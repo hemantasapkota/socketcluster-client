@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	socketcluster "github.com/hemantasapkota/socketcluster-client/golang/socketclusterclient"
+	socketcluster "socketcluster-client/client"
 )
 
 func main() {
