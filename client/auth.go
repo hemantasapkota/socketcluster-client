@@ -1,4 +1,4 @@
-package socketclusterclient
+package client
 
 // TODO: Check if we need to parse event data into this struct
 type AuthResponse struct {

@@ -1,4 +1,4 @@
-package socketclusterclient
+package client
 
 import (
 	"bytes"
@@ -10,6 +10,7 @@ type StringData string
 
 type Event struct {
 	Event string       `json:"event,omitempty"`
+	Error string       `json:"error,omitempty"`
 	Data  *interface{} `json:"data,omitempty"`
 	Cid   int          `json:"cid,omitempty"`
 	Rid   int          `json:"rid,omitempty"`

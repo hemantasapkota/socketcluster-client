@@ -1,4 +1,4 @@
-package socketclusterclient
+package client
 
 import (
 	"code.google.com/p/go.net/websocket"
@@ -8,7 +8,6 @@ import (
 	"log"
 	"os"
 	"sync"
-	"time"
 
 	ldb "github.com/hemantasapkota/goma/gomadb/leveldb"
 )
@@ -22,17 +21,17 @@ type AuthDetails struct {
 }
 
 type Client struct {
-	ws    *websocket.Conn
-	id    int
-	mutex *sync.Mutex
-	db    *ldb.GomaDB
+	ws       *websocket.Conn
+	id       int
+	mutex    *sync.Mutex
+	quitChan chan int
 
-	QuitChan chan int
-
+	DB            *ldb.GomaDB
 	OnAuthSuccess func()
-	OnData        func(event *Event)
+	OnAuthFailure func(string)
+	OnData        func(*Event)
 
-	LastEventPublishedDate time.Time
+	loginEvent Event
 }
 
 var Info *log.Logger
@@ -63,7 +62,7 @@ func NewClient(auth AuthDetails, dbpath string) (*Client, error) {
 		ws:       ws,
 		id:       0,
 		mutex:    &sync.Mutex{},
-		QuitChan: make(chan int),
+		quitChan: make(chan int),
 	}
 
 	c.setupDB(dbpath)
@@ -74,7 +73,7 @@ func NewClient(auth AuthDetails, dbpath string) (*Client, error) {
 	rEvent, err := c.recieve()
 
 	if err != nil {
-		fmt.Printf("%v", err)
+		Info.Println(err)
 		return nil, errors.New("#handshake recieve error")
 	}
 
@@ -84,7 +83,9 @@ func NewClient(auth AuthDetails, dbpath string) (*Client, error) {
 	if rEvent.Rid == 1 {
 		if !isAuthenticated(rEvent) {
 			c.emit(c.NewEvent("clearoldsessions", makeClearOldSessionsData(auth)))
-			c.emit(c.NewEvent("login", makeLoginData(auth)))
+
+			c.loginEvent = c.NewEvent("login", makeLoginData(auth))
+			c.emit(c.loginEvent)
 		}
 	}
 
@@ -148,7 +149,7 @@ func (c *Client) listen() {
 		case err := <-recvErr:
 			Info.Println("Listen error : ", err)
 
-		case <-c.QuitChan:
+		case <-c.quitChan:
 			Info.Println("Stopping listening")
 			return
 		}
@@ -164,16 +165,19 @@ func (c *Client) dealWithEvent(event *Event) {
 	name := event.Event
 	if name == "#setAuthToken" {
 	} else if name == "#publish" {
-		c.LastEventPublishedDate = time.Now()
 	}
 
 	if event.Data != nil {
 		c.OnData(event)
 	}
 
-	// In the sequence of events here, Rid 3 is for login event
-	// This might change in the future
-	if event.Rid == 3 {
+	if event.Rid == c.loginEvent.Cid {
+		if len(event.Error) > 0 {
+			c.OnAuthFailure(event.Error)
+		} else {
+			c.OnAuthSuccess()
+		}
+
 		c.OnAuthSuccess()
 	}
 }
@@ -192,8 +196,7 @@ func (c *Client) pong() {
 }
 
 func (c *Client) Close() {
-	Info.Println("Closing connection")
-	close(c.QuitChan)
+	close(c.quitChan)
 	c.ws.Close()
 	ldb.CloseDB()
 }
@@ -254,7 +257,7 @@ func (c *Client) newId() int {
 
 func (c *Client) setupDB(dbpath string) error {
 	var err error
-	c.db, err = ldb.InitDB(dbpath)
+	c.DB, err = ldb.InitDB(dbpath)
 	if err != nil {
 		return err
 	}
@@ -262,9 +265,9 @@ func (c *Client) setupDB(dbpath string) error {
 }
 
 func (c *Client) AddEvent(id string, channelName string) error {
-	return c.db.Put(id, channelName)
+	return c.DB.Put(id, channelName)
 }
 
 func (c *Client) GetEvent(id string) (string, error) {
-	return c.db.Get(id)
+	return c.DB.Get(id)
 }

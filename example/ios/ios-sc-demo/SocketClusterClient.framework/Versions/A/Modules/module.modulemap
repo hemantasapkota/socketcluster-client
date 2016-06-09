@@ -1,0 +1,5 @@
+framework module "SocketClusterClient" {
+    header "SocketClusterClient.h"
+
+    export *
+}
