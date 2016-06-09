@@ -28,6 +28,10 @@ func main() {
 		// Auth has been successful.
 	}
 
+	sc.OnAuthFailure = func(err string) {
+		// Do something
+	}
+
 	// OnData
 	sc.OnData = func(event *socketcluster.Event) {
 		if event.Data != nil {
