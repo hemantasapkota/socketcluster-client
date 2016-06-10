@@ -32,7 +32,7 @@ func NewSocketClusterClient(host string, profileName string, authToken string, u
 
 	sc.OnData = func(event *socketcluster.Event) {
 		data, err := json.Marshal(event)
-		if err != nil {
+		if err == nil {
 			sc.DB.PutBytes("data", data)
 		}
 	}
