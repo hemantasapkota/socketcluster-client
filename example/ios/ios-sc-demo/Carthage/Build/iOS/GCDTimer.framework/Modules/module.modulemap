@@ -1,0 +1,10 @@
+framework module GCDTimer {
+  umbrella header "GCDTimer.h"
+
+  export *
+  module * { export * }
+}
+
+module GCDTimer.Swift {
+    header "GCDTimer-Swift.h"
+}

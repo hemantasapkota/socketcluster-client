@@ -40,6 +40,10 @@ func NewSocketClusterClient(host string, profileName string, authToken string, u
 }
 
 func Disconnect() {
+	if sc == nil {
+		return
+	}
+
 	sc.Close()
 	sc = nil
 }

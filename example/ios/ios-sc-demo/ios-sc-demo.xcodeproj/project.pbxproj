@@ -14,7 +14,22 @@
 		2E0037A01D094C6A000B3649 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E00379E1D094C6A000B3649 /* LaunchScreen.storyboard */; };
 		2E0037A81D094D33000B3649 /* SocketClusterProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0037A71D094D33000B3649 /* SocketClusterProxy.swift */; };
 		2E0037B21D09904E000B3649 /* SocketClusterClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0037B11D09904E000B3649 /* SocketClusterClient.framework */; };
+		2E0037B71D0A3A90000B3649 /* GCDTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0037B31D0A39D0000B3649 /* GCDTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2E0037B81D0A3A90000B3649 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2E0037B71D0A3A90000B3649 /* GCDTimer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E0037921D094C6A000B3649 /* ios-sc-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sc-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +42,7 @@
 		2E0037A71D094D33000B3649 /* SocketClusterProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketClusterProxy.swift; sourceTree = "<group>"; };
 		2E0037B01D098DBC000B3649 /* BridgingHeader-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BridgingHeader-Swift.h"; sourceTree = "<group>"; };
 		2E0037B11D09904E000B3649 /* SocketClusterClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketClusterClient.framework; sourceTree = "<group>"; };
+		2E0037B31D0A39D0000B3649 /* GCDTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDTimer.framework; path = Carthage/Build/iOS/GCDTimer.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +60,7 @@
 		2E0037891D094C6A000B3649 = {
 			isa = PBXGroup;
 			children = (
+				2E0037B31D0A39D0000B3649 /* GCDTimer.framework */,
 				2E0037B11D09904E000B3649 /* SocketClusterClient.framework */,
 				2E0037B01D098DBC000B3649 /* BridgingHeader-Swift.h */,
 				2E0037941D094C6A000B3649 /* ios-sc-demo */,
@@ -83,6 +100,8 @@
 				2E00378E1D094C6A000B3649 /* Sources */,
 				2E00378F1D094C6A000B3649 /* Frameworks */,
 				2E0037901D094C6A000B3649 /* Resources */,
+				2E0037B81D0A3A90000B3649 /* Embed Frameworks */,
+				2E0037B91D0A4958000B3649 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -138,6 +157,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E0037B91D0A4958000B3649 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/GCDTimer.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E00378E1D094C6A000B3649 /* Sources */ = {
@@ -264,6 +300,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "ios-sc-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -280,6 +317,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "ios-sc-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

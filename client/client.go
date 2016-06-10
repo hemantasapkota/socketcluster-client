@@ -201,12 +201,6 @@ func (c *Client) Close() {
 	ldb.CloseDB()
 }
 
-func (c *Client) Pause() {
-}
-
-func (c *Client) Resume() {
-}
-
 // Reciever channels
 func (c *Client) receiver() (<-chan *Event, chan error) {
 	ch, errCh := make(chan *Event), make(chan error)

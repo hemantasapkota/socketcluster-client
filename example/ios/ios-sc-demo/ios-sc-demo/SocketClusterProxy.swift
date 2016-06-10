@@ -34,9 +34,9 @@ class SocketClusterProxy {
         
         if error != nil {
             return
-        } else {
-            
         }
+        
+        
     }
     
     func disconnect() {
