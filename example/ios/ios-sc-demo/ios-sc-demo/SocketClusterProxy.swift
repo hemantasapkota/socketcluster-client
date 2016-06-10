@@ -8,6 +8,7 @@
 
 import Foundation
 import SocketClusterClient
+import GCDTimer
 
 class SocketClusterProxy {
     
@@ -36,6 +37,19 @@ class SocketClusterProxy {
             return
         }
         
+        let dataPollTimer = GCDTimer(intervalInSecs: 0.1)
+        dataPollTimer.Event = {
+            var data:NSData? = nil
+            var err:NSError? = nil
+            GoSocketClusterClientGetData(&data, &err)
+            if err != nil {
+                print("\(err)")
+            } else {
+                let s = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print(s)
+            }
+        }
+        dataPollTimer.start()
         
     }
     
